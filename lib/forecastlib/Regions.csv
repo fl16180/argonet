@@ -1,0 +1,52 @@
+Region,Full State Name,State
+1,Connecticut,CT
+1,Maine,ME
+1,Massachusetts,MA
+1,New Hampshire,NH
+1,Rhode Island,RI
+1,Vermont,VT
+2,New Jersey,NJ
+2,New York,NY
+2,Other states,OTHER STATES
+3,Delaware,DE
+3,Maryland,MD
+3,Pennsylvania,PA
+3,Virginia,VA
+3,West Virginia,WV
+4,Alabama,AL
+4,Florida,FL
+4,Georgia,GA
+4,Kentucky,KY
+4,Mississippi,MS
+4,North Carolina,NC
+4,South Carolina,SC
+4,Tennessee,TN
+5,Illinois,IL
+5,Indiana,IN
+5,Michigan,MI
+5,Minnesota,MN
+5,Ohio,OH
+5,Wisconsin,WI
+6,Arkansas,AR
+6,Louisiana,LA
+6,New Mexico,NM
+6,Oklahoma,OK
+6,Texas,TX
+7,Iowa,IA
+7,Kansas,KS
+7,Missouri,MO
+7,Nebraska,NE
+8,Colorado,CO
+8,Montana,MT
+8,North Dakota,ND
+8,South Dakota,SD
+8,Utah,UT
+8,Wyoming,WY
+9,Arizona,AZ
+9,California,CA
+9,Hawaii,HI
+9,Nevada,NV
+10,Alaska,AK
+10,Idaho,ID
+10,Oregon,OR
+10,Washington,WA
