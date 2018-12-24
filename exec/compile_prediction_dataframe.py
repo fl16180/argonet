@@ -22,7 +22,6 @@ def compile(tag, outfile):
 
     ens_df = []
     for i, state in enumerate(VALID_STATES):
-        # print state
 
         state_dat = pd.read_csv(config.STATES_DIR + '/{0}/{1}.csv'.format(state, tag),
                                 parse_dates=[0])
@@ -34,10 +33,12 @@ def compile(tag, outfile):
 
     ens_df.to_csv(config.STATES_DIR + '/_overview/{0}.csv'.format(outfile), index=False)
 
+    return ens_df
+
 
 if __name__ == '__main__':
 
     TAG = 'top_argo_preds'
-    OUTFILE = 'all_states_argo'
+    OUTFILE = 'compiled_argo_preds'
 
     compile(TAG, OUTFILE)

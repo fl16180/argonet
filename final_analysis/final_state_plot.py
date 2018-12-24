@@ -47,7 +47,7 @@ def main_plot(STATES, page):
     for i, state in enumerate(STATES):
         ax = plt.subplot(n_y, n_x, i + 1)
 
-        models = pd.read_csv(config.STATES_DIR + '/{0}/top_preds.csv'.format(state), parse_dates=[0])
+        models = pd.read_csv(config.STATES_DIR + '/{0}/top_argo_preds.csv'.format(state), parse_dates=[0])
         ens_models = pd.read_csv(config.STATES_DIR + '/{0}/top_ens_preds.csv'.format(state), parse_dates=[0])
 
         # load first set of models
@@ -60,7 +60,7 @@ def main_plot(STATES, page):
         weeks = models.index.values
         target = models['ILI']
         gft = models['GFT']
-        argo = models['ARGO(gt,ath)']
+        argo = models['ARGO']
 
         gft[target == 0] = np.nan
         gft[gft == 0] = np.nan

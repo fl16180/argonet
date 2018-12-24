@@ -34,7 +34,7 @@ def get_selection_data():
 
         state_dat = pd.read_csv(config.STATES_DIR + '/{0}/top_ens_preds.csv'.format(state), parse_dates=[0])
 
-        argo = state_dat['ARGO(gt,ath)']
+        argo = state_dat['ARGO']
         net = state_dat['Net']
         ens = state_dat['ARGONet']
 
@@ -99,7 +99,7 @@ def main_plot(STATES, page, ids):
         weeks = models.index.values
         target = models['ILI']
         ar = models['AR52']
-        argo = models['ARGO(gt,ath)']
+        argo = models['ARGO']
         ens = models['ARGONet']
 
         ar[target == 0] = np.nan
