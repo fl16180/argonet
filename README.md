@@ -4,7 +4,7 @@ leveraging Internet-based data and network approaches" by *Lu et al (2018)*. The
 
 ## Setup
 
-Download the repository. The code was written in Python 2.7 with Anaconda package distribution.
+Download the repository. The code was written in Python 2.7 with Anaconda package distribution. Package requirements for modeling are numpy, pandas, scikit-learn, scipy. Visualization uses matplotlib and seaborn except for geographical heatmaps which use ggplot2 in R 3.4.  
 
 ## Data
 
@@ -24,3 +24,6 @@ The main results of the paper use the above preprocessed data files as input. Th
 3. [net_model.py](./exec/net_model.py) runs the Net model.
 
 4. [ensemble_model.py](./exec/ensemble_model.py) generates the ensemble predictions from the ARGO and Net prediction files.
+
+## Visualization
+Once predictions are generated, results can be visualized using scripts in [final_analysis](./final_analysis). I will update this section with details once the paper is published. 
