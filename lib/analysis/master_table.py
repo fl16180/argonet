@@ -81,7 +81,16 @@ class Tabler(object):
 
 
 
-def main(VALID_STATES, HEADER, METRICS, MODELS):
+def main():
+    INPUT_TABLE = 'top_argo_table'
+
+    VALID_STATES = ['AK','AL','AR','AZ','DE','GA','ID','KS','KY','LA','MA','MD','ME','MI',
+                    'MN','NC','ND','NE','NH','NJ','NM','NV','NY','OH','OR','PA','RI','SC',
+                    'SD','TN','TX','UT','VA','VT','WA','WI','WV']
+
+    HEADER = ['2012-13', '2013-14', '2014-15', '2015-16', '2016-17', 'Whole Period', 'GFT Period']
+    METRICS = ['RMSE', 'PEARSON', 'MAPE']
+    MODELS = ['GFT', 'AR52', 'ARGO']
 
     a = Tabler(VALID_STATES, HEADER, METRICS, MODELS)
     a.multi_index()
@@ -90,4 +99,4 @@ def main(VALID_STATES, HEADER, METRICS, MODELS):
 
 
 if __name__ == '__main__':
-    main(VALID_STATES, HEADER, METRICS, MODELS)
+    main()

@@ -51,7 +51,7 @@ def main():
             print e
 
 
-def ensemble_append():
+def ensemble_append(FILE1, OUTFILE):
 
     ens = pd.read_csv(config.STATES_DIR + '/_overview/Predictions_Ensemble.csv', parse_dates=[0])
 
@@ -66,7 +66,6 @@ def ensemble_append():
 
             merged.to_csv(config.STATES_DIR + '/{0}/{1}_preds.csv'.format(st, OUTFILE), index=False)
 
-
             A = scoring.Scorer(st, show_terminal=True, gft_window=True)
             A.results_load(config.STATES_DIR + '/{0}/{1}_preds.csv'.format(st, OUTFILE))
             A.results_score()
@@ -76,7 +75,7 @@ def ensemble_append():
             print e
 
 
-def net_append():
+def net_append(FILE1, OUTFILE):
 
     net = pd.read_csv(config.STATES_DIR + '/_overview/Predictions_Net.csv', parse_dates=[0])
 
@@ -87,9 +86,6 @@ def net_append():
             home_models = pd.read_csv(config.STATES_DIR + '/{0}/{1}_preds.csv'.format(st, FILE1), parse_dates=[0])
             add_models = net.loc[:, ['Week', st]]
             merged = home_models.merge(add_models, on='Week')
-
-            # get rid of extra row from earlier bug
-            merged = merged[1:]
 
             merged.rename(columns={st:'Net'}, inplace=True)
 
@@ -106,4 +102,11 @@ def net_append():
 
 
 if __name__ == '__main__':
-    ensemble_append()
+
+    FILE1 = 'top_argo'
+    OUTFILE = 'argo_net'
+    net_append(FILE1, OUTFILE)
+
+    FILE1 = 'argo_net'
+    OUTFILE = 'argo_net_ens'
+    ensemble_append(FILE1, OUTFILE)

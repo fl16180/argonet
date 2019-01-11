@@ -12,7 +12,7 @@ VALID_STATES = ['AK','AL','AR','AZ','DE','GA','ID','KS','KY','LA','MA','MD','ME'
 
 HEADER = ['2014-15', '2015-16', '2016-17', 'ARGONet Period']
 METRICS = ['RMSE', 'PEARSON', 'MAPE']
-MODELS = ['AR52', 'ARGO(gt)', 'ARGO(gt,ath)', 'Net', 'ARGONet']
+MODELS = ['AR52', 'ARGO', 'Net', 'ARGONet']
 
 
 class Tabler(object):
@@ -42,7 +42,7 @@ class Tabler(object):
         all_rows = [[] for x in range(len(self.metrics))]
 
         for ST in self.states:
-            results = pd.read_csv(config.STATES_DIR + '/{0}/top_ens_table.csv'.format(ST))
+            results = pd.read_csv(config.STATES_DIR + '/{0}/argo_net_ens_table.csv'.format(ST))
             results = results.drop(labels=['SCORE','GFT_PERIOD'], axis=1)
             results = results[results.Metric != 'GFT'].reset_index().drop('index', axis=1)
 
@@ -55,12 +55,11 @@ class Tabler(object):
                 results_one_metric = results[dividers[i] + 1:dividers[i] + 1 + len(self.models)]
 
                 ar_row = results_one_metric[results_one_metric.Metric == 'AR52'].values[:, 1:]
-                argo1_row = results_one_metric[results_one_metric.Metric == 'ARGO(gt)'].values[:, 1:]
-                argo2_row = results_one_metric[results_one_metric.Metric == 'ARGO(gt,ath)'].values[:, 1:]
-                argo3_row = results_one_metric[results_one_metric.Metric == 'Net'].values[:, 1:]
-                argo4_row = results_one_metric[results_one_metric.Metric == 'ARGONet'].values[:, 1:]
+                argo1_row = results_one_metric[results_one_metric.Metric == 'ARGO'].values[:, 1:]
+                argo2_row = results_one_metric[results_one_metric.Metric == 'Net'].values[:, 1:]
+                argo3_row = results_one_metric[results_one_metric.Metric == 'ARGONet'].values[:, 1:]
 
-                block = np.vstack((ar_row, argo1_row, argo2_row, argo3_row, argo4_row))
+                block = np.vstack((ar_row, argo1_row, argo2_row, argo3_row))
 
                 all_rows[i].append(block)
 
@@ -78,9 +77,20 @@ class Tabler(object):
         final.to_csv(config.STATES_DIR + '/_overview/final_table_ens.csv', na_rep='--')
         final.to_excel(config.STATES_DIR + '/_overview/final_table_ens.xlsx', na_rep='--')
 
-if __name__ == '__main__':
+def main():
+
+    VALID_STATES = ['AK','AL','AR','AZ','DE','GA','ID','KS','KY','LA','MA','MD','ME','MI',
+                    'MN','NC','ND','NE','NH','NJ','NM','NV','NY','OH','OR','PA','RI','SC',
+                    'SD','TN','TX','UT','VA','VT','WA','WI','WV']
+
+    HEADER = ['2014-15', '2015-16', '2016-17', 'ARGONet Period']
+    METRICS = ['RMSE', 'PEARSON', 'MAPE']
+    MODELS = ['AR52', 'ARGO', 'Net', 'ARGONet']
 
     a = Tabler(VALID_STATES, HEADER, METRICS, MODELS)
     a.multi_index()
     a.load_tables()
     a.finish_table()
+
+if __name__ == '__main__':
+    main()
